@@ -1,0 +1,113 @@
+import { GlobalConfig } from "payload/types";
+import { axios } from "../services/axios";
+import { env } from "../services/env";
+
+export const homePage: GlobalConfig = {
+	slug: "homePage",
+	fields: [
+		{
+			type: "tabs",
+			tabs: [
+				{
+					name: "landingPageBanner",
+					fields: [
+						{
+							name: "primaryHeaders",
+							type: "array",
+							fields: [
+								{
+									name: "content",
+									type: "text",
+									required: true
+								}
+							],
+							required: true
+						},
+						{
+							name: "secondaryHeaders",
+							type: "array",
+							fields: [
+								{
+									name: "content",
+									type: "text",
+									required: true
+								}
+							],
+							required: true
+						},
+						{
+							name: "resume",
+							type: "upload",
+							relationTo: "media",
+							required: true
+						},
+						{
+							name: "resumeDownloadText",
+							type: "text",
+							required: true
+						},
+						{
+							type: "tabs",
+							tabs: [
+								{
+									name: "landingPageBannerImage",
+									fields: [
+										{
+											name: "light",
+											type: "upload",
+											relationTo: "media",
+											required: true,
+											admin: {
+												description: "Square image"
+											}
+										},
+										{
+											name: "dark",
+											type: "upload",
+											relationTo: "media",
+											required: true,
+											admin: {
+												description: "Square image"
+											}
+										}
+									]
+								}
+							],
+							required: true
+						}
+					]
+				}
+			],
+			required: true
+		},
+		{
+			type: "tabs",
+			tabs: [
+				{
+					name: "projects",
+					fields: [
+						{ name: "header", type: "text", required: true },
+						{
+							name: "projects",
+							type: "relationship",
+							relationTo: "projects",
+							hasMany: true
+						}
+					]
+				}
+			]
+		}
+	],
+	access: { read: () => true },
+	hooks: {
+		afterChange: [
+			async (args) => {
+				await axios.post("/api/revalidate", {
+					token: env?.REVALIDATION_TOKEN,
+					paths: ["/"]
+				});
+				return args.doc;
+			}
+		]
+	}
+};
