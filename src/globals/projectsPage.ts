@@ -1,6 +1,8 @@
+import dotenv from "dotenv";
 import { GlobalConfig } from "payload/types";
 import { axios } from "../services/axios";
-import { env } from "../services/env";
+
+dotenv.config();
 
 export const projectsPage: GlobalConfig = {
 	slug: "projectsPage",
@@ -18,7 +20,7 @@ export const projectsPage: GlobalConfig = {
 		afterChange: [
 			async (args) => {
 				await axios.post("/api/revalidate", {
-					token: env?.REVALIDATION_TOKEN,
+					token: process.env.REVALIDATION_TOKEN,
 					paths: ["/", "/projects"]
 				});
 				return args.doc;

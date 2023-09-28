@@ -1,6 +1,9 @@
+import dotenv from "dotenv";
 import { CollectionConfig } from "payload/types";
 import { axios } from "../services/axios";
-import { env } from "../services/env";
+
+dotenv.config();
+
 export const projects: CollectionConfig = {
 	slug: "projects",
 	admin: { useAsTitle: "title" },
@@ -53,7 +56,7 @@ export const projects: CollectionConfig = {
 		afterChange: [
 			async (args) => {
 				await axios.post("/api/revalidate", {
-					token: env?.REVALIDATION_TOKEN,
+					token: process.env.REVALIDATION_TOKEN,
 					paths: ["/", "/projects"]
 				});
 				return args.doc;

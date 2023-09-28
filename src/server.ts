@@ -1,8 +1,9 @@
+import dotenv from "dotenv";
 import express from "express";
 import payload from "payload";
-import { env } from "./services/env";
 
-require("dotenv").config();
+dotenv.config();
+
 const app = express();
 
 // Redirect root to Admin panel
@@ -13,8 +14,8 @@ app.get("/", (_, res) => {
 const start = async () => {
 	// Initialize Payload
 	await payload.init({
-		secret: env?.PAYLOAD_SECRET,
-		mongoURL: env?.MONGODB_URI,
+		secret: process.env.PAYLOAD_SECRET,
+		mongoURL: process.env.MONGODB_URI,
 		express: app,
 		onInit: async () => {
 			payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
@@ -23,7 +24,7 @@ const start = async () => {
 
 	// Add your own express routes here
 
-	app.listen(env.PORT ?? 3000);
+	app.listen(process.env.PORT ?? 3000);
 };
 
 start();

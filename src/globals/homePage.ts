@@ -1,6 +1,8 @@
+import dotenv from "dotenv";
 import { GlobalConfig } from "payload/types";
 import { axios } from "../services/axios";
-import { env } from "../services/env";
+
+dotenv.config();
 
 export const homePage: GlobalConfig = {
 	slug: "homePage",
@@ -103,7 +105,7 @@ export const homePage: GlobalConfig = {
 		afterChange: [
 			async (args) => {
 				await axios.post("/api/revalidate", {
-					token: env?.REVALIDATION_TOKEN,
+					token: process.env.REVALIDATION_TOKEN,
 					paths: ["/"]
 				});
 				return args.doc;
