@@ -11,7 +11,8 @@ export const skillTabs: CollectionConfig = {
 		{
 			name: "name",
 			type: "text",
-			required: true
+			required: true,
+			unique: true
 		}
 	],
 	access: { read: () => true },
