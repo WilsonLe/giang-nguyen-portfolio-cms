@@ -33,10 +33,33 @@ export const projects: CollectionConfig = {
 			}
 		},
 		{
-			name: "description",
+			name: "shortDescription",
 			type: "text",
 			required: true,
-			admin: { description: `Detail description of the project` }
+			admin: { description: `Short description of the project` }
+		},
+		{
+			name: "longDescription",
+			type: "blocks",
+			blocks: [
+				{
+					slug: "Paragraph",
+					fields: [{ name: "content", type: "text", required: true }]
+				},
+				{
+					slug: "Image",
+					fields: [
+						{
+							name: "image",
+							type: "upload",
+							relationTo: "media",
+							required: true
+						}
+					]
+				}
+			],
+			required: true,
+			admin: { description: `Long description of the project` }
 		},
 		{
 			name: "startDate",

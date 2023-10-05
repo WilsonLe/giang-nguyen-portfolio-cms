@@ -82,7 +82,6 @@ export const homePage: GlobalConfig = {
 			],
 			required: true
 		},
-
 		{
 			type: "tabs",
 			tabs: [
@@ -94,6 +93,23 @@ export const homePage: GlobalConfig = {
 							name: "skills",
 							type: "relationship",
 							relationTo: "skills",
+							hasMany: true
+						}
+					]
+				}
+			]
+		},
+		{
+			type: "tabs",
+			tabs: [
+				{
+					name: "experiences",
+					fields: [
+						{ name: "header", type: "text", required: true },
+						{
+							name: "experiences",
+							type: "relationship",
+							relationTo: "experiences",
 							hasMany: true
 						}
 					]

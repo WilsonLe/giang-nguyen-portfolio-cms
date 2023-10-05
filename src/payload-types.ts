@@ -7,127 +7,177 @@
  */
 
 export interface Config {
-  collections: {
-    users: User;
-    projects: Project;
-    media: Media;
-  };
-  globals: {
-    homePage: HomePage;
-    aboutPage: AboutPage;
-    projectsPage: ProjectsPage;
-    navigations: Navigation;
-  };
+	collections: {
+		users: User;
+		projects: Project;
+		media: Media;
+		skills: Skill;
+		skillTabs: SkillTab;
+		experiences: Experience;
+	};
+	globals: {
+		homePage: HomePage;
+		aboutPage: AboutPage;
+		projectsPage: ProjectsPage;
+		navigations: Navigation;
+	};
 }
 export interface User {
-  id: string;
-  fullName: string;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  salt?: string;
-  hash?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
-  password?: string;
+	id: string;
+	fullName: string;
+	updatedAt: string;
+	createdAt: string;
+	email: string;
+	resetPasswordToken?: string;
+	resetPasswordExpiration?: string;
+	salt?: string;
+	hash?: string;
+	loginAttempts?: number;
+	lockUntil?: string;
+	password?: string;
 }
 export interface Project {
-  id: string;
-  slug: string;
-  title: string;
-  illustration: string | Media;
-  description: string;
-  startDate: string;
-  endDate: string;
-  updatedAt: string;
-  createdAt: string;
+	id: string;
+	slug: string;
+	title: string;
+	illustration: string | Media;
+	shortDescription: string;
+	longDescription: (
+		| {
+				content: string;
+				id?: string;
+				blockName?: string;
+				blockType: "Paragraph";
+		  }
+		| {
+				image: string | Media;
+				id?: string;
+				blockName?: string;
+				blockType: "Image";
+		  }
+	)[];
+	startDate: string;
+	endDate: string;
+	updatedAt: string;
+	createdAt: string;
 }
 export interface Media {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string;
-  filename?: string;
-  mimeType?: string;
-  filesize?: number;
-  width?: number;
-  height?: number;
+	id: string;
+	alt: string;
+	updatedAt: string;
+	createdAt: string;
+	url?: string;
+	filename?: string;
+	mimeType?: string;
+	filesize?: number;
+	width?: number;
+	height?: number;
+}
+export interface Skill {
+	id: string;
+	name: string;
+	tab: string | SkillTab;
+	updatedAt: string;
+	createdAt: string;
+}
+export interface SkillTab {
+	id: string;
+	name: string;
+	updatedAt: string;
+	createdAt: string;
+}
+export interface Experience {
+	id: string;
+	title: string;
+	descriptionLines: {
+		description: string;
+		id?: string;
+	}[];
+	startDate: string;
+	endDate: string;
+	updatedAt: string;
+	createdAt: string;
 }
 export interface HomePage {
-  id: string;
-  landingPageBanner: {
-    primaryHeaders: {
-      content: string;
-      id?: string;
-    }[];
-    secondaryHeaders: {
-      content: string;
-      id?: string;
-    }[];
-    resume: string | Media;
-    resumeDownloadText: string;
-    landingPageBannerImage: {
-      light: string | Media;
-      dark: string | Media;
-    };
-  };
-  projects: {
-    header: string;
-    projects?: string[] | Project[];
-  };
-  updatedAt?: string;
-  createdAt?: string;
+	id: string;
+	landingPageBanner: {
+		primaryHeaders: {
+			content: string;
+			id?: string;
+		}[];
+		secondaryHeaders: {
+			content: string;
+			id?: string;
+		}[];
+		resume: string | Media;
+		resumeDownloadText: string;
+		landingPageBannerImage: {
+			light: string | Media;
+			dark: string | Media;
+		};
+	};
+	skills: {
+		header: string;
+		skills?: string[] | Skill[];
+	};
+	experiences: {
+		header: string;
+		experiences?: string[] | Experience[];
+	};
+	projects: {
+		header: string;
+		projects?: string[] | Project[];
+	};
+	updatedAt?: string;
+	createdAt?: string;
 }
 export interface AboutPage {
-  id: string;
-  banner: {
-    bannerImage: string | Media;
-    content: {
-      primaryHeaders: {
-        content: string;
-        id?: string;
-      }[];
-      secondaryHeaders: {
-        content: string;
-        id?: string;
-      }[];
-      paragraphs: {
-        content: string;
-        id?: string;
-      }[];
-    };
-  };
-  education: {
-    header: string;
-    education: {
-      title: string;
-      description?: string;
-      href?: string;
-      startDate: string;
-      endDate: string;
-      id?: string;
-    }[];
-  };
-  updatedAt?: string;
-  createdAt?: string;
+	id: string;
+	banner: {
+		bannerImage: string | Media;
+		content: {
+			primaryHeaders: {
+				content: string;
+				id?: string;
+			}[];
+			secondaryHeaders: {
+				content: string;
+				id?: string;
+			}[];
+			paragraphs: {
+				content: string;
+				id?: string;
+			}[];
+		};
+	};
+	education: {
+		header: string;
+		education: {
+			title: string;
+			description?: string;
+			href?: string;
+			startDate: string;
+			endDate: string;
+			id?: string;
+		}[];
+	};
+	updatedAt?: string;
+	createdAt?: string;
 }
 export interface ProjectsPage {
-  id: string;
-  header: string;
-  projects?: string[] | Project[];
-  updatedAt?: string;
-  createdAt?: string;
+	id: string;
+	header: string;
+	projects?: string[] | Project[];
+	updatedAt?: string;
+	createdAt?: string;
 }
 export interface Navigation {
-  id: string;
-  navigations: {
-    name: string;
-    href: string;
-    id?: string;
-  }[];
-  updatedAt?: string;
-  createdAt?: string;
+	id: string;
+	navigations: {
+		name: string;
+		href: string;
+		id?: string;
+	}[];
+	updatedAt?: string;
+	createdAt?: string;
 }
