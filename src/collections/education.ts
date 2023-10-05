@@ -16,8 +16,7 @@ export const education: CollectionConfig = {
 		{
 			name: "descriptionLines",
 			type: "array",
-			fields: [{ name: "description", type: "text", required: true }],
-			required: true
+			fields: [{ name: "description", type: "text", required: true }]
 		},
 		{
 			name: "startDate",
