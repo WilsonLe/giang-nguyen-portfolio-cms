@@ -82,6 +82,24 @@ export const homePage: GlobalConfig = {
 			],
 			required: true
 		},
+
+		{
+			type: "tabs",
+			tabs: [
+				{
+					name: "skills",
+					fields: [
+						{ name: "header", type: "text", required: true },
+						{
+							name: "skills",
+							type: "relationship",
+							relationTo: "skills",
+							hasMany: true
+						}
+					]
+				}
+			]
+		},
 		{
 			type: "tabs",
 			tabs: [
