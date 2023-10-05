@@ -69,47 +69,6 @@ export const aboutPage: GlobalConfig = {
 				}
 			],
 			required: true
-		},
-		{
-			type: "tabs",
-			tabs: [
-				{
-					name: "education",
-					fields: [
-						{ name: "header", type: "text", required: true },
-						{
-							name: "education",
-							type: "array",
-							fields: [
-								{
-									name: "title",
-									type: "text",
-									required: true
-								},
-								{
-									name: "description",
-									type: "text"
-								},
-								{
-									name: "href",
-									type: "text"
-								},
-								{
-									name: "startDate",
-									type: "date",
-									required: true
-								},
-								{
-									name: "endDate",
-									type: "date",
-									required: true
-								}
-							],
-							required: true
-						}
-					]
-				}
-			]
 		}
 	],
 	access: { read: () => true },

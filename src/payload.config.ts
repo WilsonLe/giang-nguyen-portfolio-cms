@@ -8,9 +8,12 @@ import { skills } from "./collections/skills";
 import { skillTabs } from "./collections/skillTabs";
 import { users } from "./collections/users";
 import { aboutPage } from "./globals/aboutPage";
+import { educationPage } from "./globals/educationPage";
+import { experiencesPage } from "./globals/experiencesPage";
 import { homePage } from "./globals/homePage";
 import { navigations } from "./globals/navigations";
 import { projectsPage } from "./globals/projectsPage";
+import { skillsPage } from "./globals/skillsPage";
 
 export default buildConfig({
 	admin: { user: users.slug },
@@ -23,7 +26,15 @@ export default buildConfig({
 		experiences,
 		education
 	],
-	globals: [homePage, aboutPage, projectsPage, navigations],
+	globals: [
+		homePage,
+		aboutPage,
+		skillsPage,
+		experiencesPage,
+		projectsPage,
+		educationPage,
+		navigations
+	],
 	upload: { limits: { fileSize: 1024 * 1024 * 1024 } },
 	typescript: { outputFile: path.resolve(__dirname, "payload-types.ts") }
 });
