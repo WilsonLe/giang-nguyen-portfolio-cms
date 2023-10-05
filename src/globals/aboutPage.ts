@@ -34,8 +34,7 @@ export const aboutPage: GlobalConfig = {
 													type: "text",
 													required: true
 												}
-											],
-											required: true
+											]
 										},
 										{
 											name: "secondaryHeaders",
@@ -46,8 +45,7 @@ export const aboutPage: GlobalConfig = {
 													type: "text",
 													required: true
 												}
-											],
-											required: true
+											]
 										},
 										{
 											name: "paragraphs",
@@ -58,8 +56,7 @@ export const aboutPage: GlobalConfig = {
 													type: "text",
 													required: true
 												}
-											],
-											required: true
+											]
 										}
 									]
 								}
