@@ -132,6 +132,23 @@ export const homePage: GlobalConfig = {
 					]
 				}
 			]
+		},
+		{
+			type: "tabs",
+			tabs: [
+				{
+					name: "education",
+					fields: [
+						{ name: "header", type: "text", required: true },
+						{
+							name: "education",
+							type: "relationship",
+							relationTo: "education",
+							hasMany: true
+						}
+					]
+				}
+			]
 		}
 	],
 	access: { read: () => true },
