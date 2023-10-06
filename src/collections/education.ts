@@ -25,8 +25,7 @@ export const education: CollectionConfig = {
 		},
 		{
 			name: "endDate",
-			type: "date",
-			required: true
+			type: "date"
 		}
 	],
 	access: { read: () => true },

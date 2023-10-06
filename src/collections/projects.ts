@@ -62,6 +62,19 @@ export const projects: CollectionConfig = {
 			admin: { description: `Long description of the project` }
 		},
 		{
+			name: "assets",
+			type: "array",
+			fields: [
+				{
+					name: "file",
+					type: "upload",
+					relationTo: "media",
+					required: true
+				}
+			],
+			admin: { description: "Any files assosiated with this projects" }
+		},
+		{
 			name: "startDate",
 			type: "date",
 			required: true,
